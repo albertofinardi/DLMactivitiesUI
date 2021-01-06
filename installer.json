@@ -1,0 +1,8 @@
+{
+    "src": "release-builds/DLM-win32-ia32/",
+    "dest": "installers/",
+    "icon": "icons/win/icon.ico",
+    "tags": [
+        "Utility"
+      ]
+  }
