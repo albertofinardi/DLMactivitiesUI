@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Alberto Finardi">
+
+  <title>Attività</title>
+
+  <!-- Bootstrap core CSS -->
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/fonts.css" rel="stylesheet">
+  <link href="vendor/indicators.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="vendor/bootstrap/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body style="margin: 1rem;">
+
+  <!-- Titles -->
+
+  <div class="container-fluid" style="padding-left: 2rem; padding-top: 1rem;">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-left font-weight-bold">Attività</h1>
+      </div>
+      <div class="col">
+        <h1 class="text-right font-weight-bold" id="orario"></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h4 class="text-left" style="font-weight:normal;">Istituto Superiore Don Lorenzo Milani</h4>
+      </div>
+      <div class="col">
+        <h4 class="text-right" style="font-weight:normal;" id="data"></h4>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Page Content -->
+  <div class="container-fluid align-items-center">
+    <br>
+    <h2 id="placeholder" class="text-center text-gray-800" style="display: none; height: 67vh;"><br><br>Al momento
+      non sono programmate <br>attività pomeridiane.</h2>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="display:block; height: 68vh;">
+
+      <div class="carousel-inner" id="dataList">
+        
+      </div>
+      <ol class="carousel-indicators" id="indicators" style="position: absolute; bottom: 0rem; z-index: 99;">
+
+      </ol>
+
+    </div>
+    <small class="text-left" style="font-weight:normal;">&copy; 2020 Alberto Finardi 5ESA</small>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.slim.min.js"></script>
+
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="GUI.js"></script>
+  <script>
+    $('.carousel').carousel({
+  interval: 8000
+})
+  </script>
+
+
+</body>
+
+</html>

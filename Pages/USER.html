@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Alberto Finardi">
+  <title>DLM</title>
+  <!-- Bootstrap core CSS -->
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/fonts.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="vendor/bootstrap/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--Intestazione-->
+  <div class="container-fluid" style="padding-left: 2rem; padding-top: 1rem;">
+    <div class="col">
+      <h1 class="text-left font-weight-bold">Programma Attività</h1>
+    </div>
+    <div class="col">
+      <h4 class="text-left" style="font-weight:normal;">Istituto Superiore Don Milani</h4>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container-fluid">
+    <br>
+    <!--FORM-->
+    <div class="card shadow mb-4">
+      <!-- Card Header - Accordion -->
+      <a href="#programmaAttiv" class="d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="true" aria-controls="programmaAttiv">
+        <h6 class="m-0 font-weight-bold text-primary">Programma nuova attività</h6>
+      </a>
+      <!-- Form -->
+      <div class="collapse show" id="programmaAttiv">
+        <div class="card-body">
+          <form id="dataForm">
+            <div class="form-group">
+              <label for="inputNome">Nome attività</label>
+              <input type="text" class="form-control" id="inputNome" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="inputClasse">Aula</label>
+                <!--<input type="number" class="form-control" id="inputClasse" placeholder="Numero aula" required>-->
+                <select id="inputClasse" class="custom-select" required>
+                  <option selected>Multimediale</option>
+                  <option>Fisica</option>
+                  <option>Chimica</option>
+                  <option>Informatica</option>
+                  <option>3</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option>27</option>
+                  <option>28</option>
+                  <option>29</option>
+                  <option>30</option>
+                  <option>31</option>
+                  <option>32</option>
+                  <option>37</option>
+                  <option>38</option>
+                  <option>41</option>
+                  <option>42</option>
+                  <option>43</option>
+                  <option>44</option>
+                  <option>45</option>
+                  <option>46</option>
+                  <option>48</option>
+                  <option>52</option>
+                  <option>53</option>
+                  <option>55</option>
+                  <option>56</option>
+                  <option>57</option>
+                  <option>58</option>
+                  <option>59</option>
+                  <option>60</option>
+                  <option>62</option>
+                </select>
+              </div>
+              <div class="form-group col">
+                <label for="inputPiano">Piano</label>
+                <select id="inputPiano" class="custom-select" required>
+                  <option selected>1° Piano</option>
+                  <option>2° Piano</option>
+                  <option>3° Piano</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="inputInizio">Inizio</label>
+                <input type='time' class="form-control" id="inputInizio" placeholder="Orario di inizio" required />
+              </div>
+              <div class="form-group col">
+                <label for="inputFine">Fine</label>
+                <input type="time" class="form-control" id="inputFine" placeholder="Orario di fine" required>
+              </div>
+            </div>
+            <p class="small font-weight-bold text-danger" id="errorMessage"></p>
+            <button type="submit" class="btn btn-primary" id="confermaAttivita">Conferma</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--ATTIVITA-->
+    <div class="card shadow mb-4">
+      <!-- Card Header - Accordion -->
+      <a href="#attivProgrammate" class="collapsed d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="attivProgrammate">
+        <h6 class="m-0 font-weight-bold text-primary">Attività programmate</h6>
+      </a>
+      <!-- Card Content - Collapse -->
+      <div class="collapse" id="attivProgrammate">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Aula</th>
+                  <th scope="col">Piano</th>
+                  <th scope="col">Inizio</th>
+                  <th scope="col">Fine</th>
+                </tr>
+              </thead>
+              <tbody id="dataListUser">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--MODIFICA-->
+    <div class="modal fade" id="modificaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modifica l'attività</h5>
+            <div class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="text-gray-900">×</span>
+            </div>
+          </div>
+          <div class="modal-body">
+            <form id="modificaForm">
+              <div class="form-group">
+                <label for="modinputNome">Nome attività</label>
+                <input type="text" class="form-control" id="modinputNome" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="modinputClasse">Aula</label>
+                  <select id="modinputClasse" class="custom-select" required>
+                    <option selected>Multimediale</option>
+                    <option>Fisica</option>
+                    <option>Chimica</option>
+                    <option>Informatica</option>
+                    <option>3</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                    <option>32</option>
+                    <option>37</option>
+                    <option>38</option>
+                    <option>41</option>
+                    <option>42</option>
+                    <option>43</option>
+                    <option>44</option>
+                    <option>45</option>
+                    <option>46</option>
+                    <option>48</option>
+                    <option>52</option>
+                    <option>53</option>
+                    <option>55</option>
+                    <option>56</option>
+                    <option>57</option>
+                    <option>58</option>
+                    <option>59</option>
+                    <option>60</option>
+                    <option>62</option>
+                  </select>
+                </div>
+                <div class="form-group col">
+                  <label for="modinputPiano">Piano</label>
+                  <select id="modinputPiano" class="custom-select" required>
+                    <option value="1° Piano">1° Piano</option>
+                    <option value="2° Piano">2° Piano</option>
+                    <option value="3° Piano">3° Piano</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="modinputInizio">Inizio</label>
+                  <input type='time' class="form-control" id="modinputInizio" placeholder="Orario di inizio" required />
+                </div>
+                <div class="form-group col">
+                  <label for="modinputFine">Fine</label>
+                  <input type="time" class="form-control" id="modinputFine" placeholder="Orario di fine" required>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit" id="conferma" data-id="">Conferma modifiche
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--STORICO-->
+    <div class="card shadow mb-4">
+
+      <a href="#storicoProgrammate" class="collapsed d-block card-header py-3" data-toggle="collapse" role="button"
+        aria-expanded="false" aria-controls="storicoProgrammate">
+        <h6 class="m-0 font-weight-bold text-primary">Storico attività</h6>
+      </a>
+      <div class="collapse" id="storicoProgrammate">
+        <div class="card-body">
+          <div class="table-responsive">
+            Tutte le attività terminate sono state salvate.
+            <div class="row float-right mr-auto">
+              <div onclick="exportData()" class="btn btn-primary mr-2">Esporta i dati</div>
+              <div class="btn btn-danger" data-toggle='modal' data-target='#eliminaStoricoModal'>Elimina</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--CONFERMA-->
+    <div class="modal fade" id="eliminaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Elimina attività</h5>
+            <div class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="text-gray-900">×</span>
+            </div>
+          </div>
+          <div class="modal-body">Sei sicuro di voler eliminare questa attività?</div>
+          <div class="modal-footer">
+            <div value="" id="confermaEliminazione" class="btn btn-danger">Conferma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--CONFERMA STORICO-->
+    <div class="modal fade" id="eliminaStoricoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Elimina dati</h5>
+            <div class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="text-gray-900">×</span>
+            </div>
+          </div>
+          <div class="modal-body">Sei sicuro di voler eliminare tutti i dati?</div>
+          <div class="modal-footer">
+            <div value="" id="confermaEliminazioneStorico" class="btn btn-danger">Conferma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+
+  <script src="vendor/jquery/jquery.slim.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="vendor/sb-admin-2.min.js"></script>
+  <script src="USER.js"></script>
+</body>
+
+</html>
